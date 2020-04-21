@@ -1,0 +1,36 @@
+.card{
+    height: 24em;
+    width: 15em;
+
+}
+.card-body{
+    max-height:200px;
+    position: absolute;
+    bottom: 1em;
+}
+
+.frame {
+    height: 200px;      /* equals max image height */
+    width: 220px;
+    border: 1px solid red;
+    white-space: nowrap;
+    
+    text-align: center; margin: 1em 0;
+}
+
+.helper {
+    display: inline-block;
+    height: 200px;
+    vertical-align: top;
+    background: #000;
+}
+
+.imgdiv {
+    
+    margin-bottom: auto;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    width: 192px;
+    height: 200px;
+}

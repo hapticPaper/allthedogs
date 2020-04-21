@@ -22,8 +22,12 @@
             {% for breed in set %}
             <div class="col-md-3">
               <div id="dogcard" class="align-self-center">
-                <div class="card" style="width: 18vw;">
+                <div class="card">
+                <div class="imgdiv">
+                <span class="imgholder">
                     <img class="card-img-top" src="{{ breed[5] }}" width='188px' alt="Card image cap">
+                </span>
+                </div>
                     <div class="card-body">
                     <h5 class="card-title">{{ breed[1] }}</h5>
                     <p class="card-text"> {{ breed[2] }}  </p>
@@ -33,6 +37,8 @@
                 </div>
                
                     </section>
+            </div>
+            <div class="col-md-1" style="width:20px;">
             </div>
              <div class="jumbotron" id='jt{{breed[0]}}' style="visibility: hidden; height: 0em;">
                     <h1 class="display-4">{{ breed[1] }}</h1>

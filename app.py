@@ -7,7 +7,9 @@ app=Flask(__name__)
 SESS = requests.session()
 app.secret_key='shutupthisisasecretkeydonttellanyonewhatitis'
 
-BREEDS=[]
+BREEDS=pd.DataFrame()
+
+
 def loadBreeds():
     global BREEDS
     BREEDS = pd.read_csv('dogs.csv')
@@ -43,6 +45,7 @@ def pullDogs():
 
 def breedPage(page=0):
     global BREEDS
+    print(type(BREEDS), BREEDS)
     breeds=BREEDS[['id','name','bred_for','breed_group','temperament','img' ]]
     return  [list(breeds.iloc[0+(page*25):((page+1)*25)].values)[i:i*5] for i in range(5)]
 
