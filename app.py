@@ -57,9 +57,9 @@ def breeds(page):
 def home():
     breeds = breedPage(0)
     breeds=breeds[['id','name','bred_for','breed_group','temperament','img' ]]
-    return render_template('index.html', breeds=list(breeds.values))
-
-
+    breeds = [list(breeds.values)[i:i+5] for i in range(5)]
+    return render_template('index.html', breeds=breeds)
+    
 if __name__=='__main__':
     #pullDogs()
     loadBreeds()
