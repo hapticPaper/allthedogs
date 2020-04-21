@@ -12,6 +12,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
       
+        <link rel="stylesheet" href="static/style.css">
 
     </head>
     <body>
@@ -19,7 +20,8 @@
         {% for set in breeds %}
             <div class="row">
             {% for breed in set %}
-            <div class="col-sm">
+            <div class="col-md-3">
+              <div id="dogcard" class="align-self-center">
                 <div class="card" style="width: 18vw;">
                     <img class="card-img-top" src="{{ breed[5] }}" width='188px' alt="Card image cap">
                     <div class="card-body">
@@ -29,19 +31,21 @@
                     <a href="#{{breed[1]}}" onclick="expand({{breed[0]}})" id="bt{{breed[0]}}" class="btn btn-primary">Expand</a>
                     </div>
                 </div>
-                <div class="jumbotron" id='jt{{breed[0]}}' style="visibility: hidden; height: 0em;">
+               
+                    </section>
+            </div>
+             <div class="jumbotron" id='jt{{breed[0]}}' style="visibility: hidden; height: 0em;">
                     <h1 class="display-4">{{ breed[1] }}</h1>
                     <p class="lead">{{ breed[2] }} </p>
                     <hr class="my-4">
-                    <img src="{{ breed[5] }}" width='500px'>
+                    <img src="{{ breed[5] }}" width='700px'>
                     <p class="lead">
                         {{ breed[2] }} <br> {{ breed[3] }} <br> {{ breed[4] }} </p>
                     <a class="btn btn-primary btn-lg" id="jbt{{breed[0]}}" href="#" role="button">Learn more</a>
                     </p>
-                    </section>
                     </div>
             </div>
-        {% endfor %}
+          {% endfor %}
             </div>
       {% endfor %}
     </div>
