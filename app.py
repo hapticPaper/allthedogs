@@ -42,6 +42,7 @@ def pullDogs():
     BREEDS = breedDf
 
 def breedPage(page=0):
+    global BREEDS
     return BREEDS.iloc[0+(page*25):((page+1)*25)]
 
 @app.route('/images/<id>')
@@ -59,7 +60,7 @@ def home():
     breeds=breeds[['id','name','bred_for','breed_group','temperament','img' ]]
     breeds = [list(breeds.values)[i:i+5] for i in range(5)]
     return render_template('index.html', breeds=breeds)
-    
+
 if __name__=='__main__':
     #pullDogs()
     loadBreeds()
