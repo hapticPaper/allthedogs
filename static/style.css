@@ -1,12 +1,17 @@
 .card{
     height: 24em;
     width: 15em;
+    border-radius: calc(0.5rem - 1px);
+    margin-bottom: 4px;
+    margin-top: 4px;
+
 
 }
 .card-body{
-    max-height:200px;
+    max-height:12em;
     position: absolute;
-    bottom: 1em;
+    bottom: 0.25em;
+    margin-top: 4px;
 }
 
 .frame {
@@ -26,11 +31,78 @@
 }
 
 .imgdiv {
-    
-    margin-bottom: auto;
+    margin-top: 10px;
+    margin-bottom: 4px;
     vertical-align: middle;
     margin-left: auto;
     margin-right: auto;
     width: 192px;
     height: 200px;
 }
+
+.picureframe{
+    vertical-align: middle;
+    width: 190px;
+    height: 192px;
+}
+
+img{
+    vertical-align: middle;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-img-top,.modalimg{
+    border-radius: calc(1rem - 1px);
+}
+
+.modal-dialog{
+    max-width: 90vw;
+    max-height: 90vw;
+}
+
+#modalhead{
+    margin-bottom: 6px;
+}
+
+.modalimgdiv {
+    vertical-align: middle;
+    justify-content: center;
+    max-height: 800px;
+
+}
+ 
+ 
+.imgdiv {
+    margin-top: 10px;
+    margin-bottom: 4px;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+}
+
+
+.modal-img{
+    vertical-align: middle;
+    margin-top: auto;
+    margin-bottom: auto;
+    max-width: inherit;
+    max-height: 800px;
+    height: auto;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: calc(1rem - 1px);
+
+}
+
+
+.picureframe{
+    vertical-align: middle;
+    width: 190px;
+    height: 192px;
