@@ -28,13 +28,13 @@
 
     <div class="container">
     {% for breed in breeds %}
-    <div class="card" style="width: 18vw;">
+    <div class="card" style="width: 24vw;">
         <img class="card-img-top" src="{{ breed[5] }}" width='188px' alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{ breed[1] }}</h5>
           <p class="card-text"> {{ breed[2] }}  </p>
           <section id="{{breed[1]}}">
-        <a href="#{{breed[1]}}" onclick="expand({{breed[0]}})" class="btn btn-primary">Expand</a>
+        <a href="#{{breed[1]}}" onclick="expand({{breed[0]}})" id="bt{{breed[0]}}" class="btn btn-primary">Expand</a>
         </div>
       </div>
       <div class="jumbotron" id='jt{{breed[0]}}' style="visibility: hidden; height: 0em;">
@@ -44,7 +44,7 @@
         <img src="{{ breed[5] }}" width='500px'>
         <p class="lead">
             {{ breed[2] }} <br> {{ breed[3] }} <br> {{ breed[4] }} </p>
-          <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+          <a class="btn btn-primary btn-lg" id="jbt{{breed[0]}}" href="#" role="button">TBD</a>
         </p>
         </section>
       </div>
@@ -55,10 +55,15 @@
         if ($('#jt'+id)[0].style.visibility=='hidden'){
             $('#jt'+id)[0].style.visibility='visible';
             $('#jt'+id)[0].style.height='fit-content';
+            $('#jt'+id)[0].style.height='fit-content';
+            $('#bt'+id)[0].text='Collapse';
+            $('#jbt'+id)[0].text='Up';
+            
         }
         else{
             $('#jt'+id)[0].style.visibility='hidden';
             $('#jt'+id)[0].style.height='0em';
+            $('#bt'+id)[0].text='Expand';
         }
         
     }
