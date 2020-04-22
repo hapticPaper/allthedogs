@@ -146,6 +146,10 @@
             }
             function loadnext(){
                 var currentPage = parseInt(parseURL(window.location.href).pathname.replace("/",""))
+                if (Number.isNaN(currentPage)){
+                    currentPage=1
+                }
+                
                 window.open('/'+(currentPage+1), "_self")
             }
         </script>
