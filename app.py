@@ -176,7 +176,7 @@ if __name__ == '__main__':
     breeds = d.loadBreeds()
     #breeds = pullDogs()
     #breeds = pullImages(breeds)
-    d.reloadDogs(breeds)
+    #d.reloadDogs(breeds)
     app.run(debug=True)
 
 

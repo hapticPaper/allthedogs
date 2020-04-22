@@ -30,7 +30,7 @@
                     {% for set in breeds %}
                         <div class="row">
                         {% for breed in set %}
-                        <div class="col-3">
+                        <div class="col-3 coldef">
                         <div id="dogcard" class="align-self-center">
                             <div class="card">
                             <div class="imgdiv">
@@ -118,6 +118,22 @@
         </div>
         <script>
             window.onload=updatePagination();
+            window.onload=updateForDevice();
+
+
+            function updateForDevice(){
+              if (window.matchMedia("(max-width: 700px)").matches){
+                $('.coldef').removeClass('col-3')
+                $('.coldef').addClass('col-6')
+              }
+              else{
+                $('.coldef').removeClass('col-6')
+                $('.coldef').addClass('col-3')
+              }
+            }
+
+
+
             function parseURL(url) {
                 var parser = document.createElement('a'),
                     searchObject = {},
