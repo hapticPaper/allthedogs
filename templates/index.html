@@ -17,93 +17,156 @@
     </head>
     <body>
         <div class="container">
-        {% for set in breeds %}
-            <div class="row">
-            {% for breed in set %}
-            <div class="col-3">
-              <div id="dogcard" class="align-self-center">
-                <div class="card">
-                <div class="imgdiv">
-                        <img class="card-img-top" src="{{ breed[5] }}" alt="Card image cap">
+         <div class='row'>
+             
+            <div id="main_viewport" class="container overflow-auto">
+                    {% for set in breeds %}
+                        <div class="row">
+                        {% for breed in set %}
+                        <div class="col-3">
+                        <div id="dogcard" class="align-self-center">
+                            <div class="card">
+                            <div class="imgdiv">
+                                    <img class="card-img-top" src="{{ breed[5] }}" alt="Card image cap">
 
-                    </div>
-                    <div class="card-body">
-                    <h5 class="card-title">{{ breed[1] }}</h5>
-                    <p class="card-text"> {{ breed[2] }}  </p>
-                    <section id="{{breed[1]}}">
-                    <!-- <a href="#{{breed[1]}}" onclick="expand({{breed[0]}})" id="bt{{breed[0]}}" class="btn btn-primary">Expand</a> -->
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m{{breed[0]}}">
-                        Expand
-                    </button>
-                        </section>
-                    </div>
-                </div>
-
-            </div>
-               
-            </div>
-            <div class='row'><div class="col-md-12"><br></div></div>
-            <!-- <div class="col-md-1" style="width:20px;">
-            </div> -->
-                <!-- Modal -->
-            <div class="modal fade" id="m{{breed[0]}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="container">
-                    <div class='row'>
-                        <div class="col-md-12" id="modalhead">
-                            <br>
-                            <h4 class="modal-title" id="modal{{ breed[1] }}">{{ breed[1] }}</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                                </div>
+                                <div class="card-body">
+                                <h5 class="card-title">{{ breed[1] }}</h5>
+                                <p class="card-text"> {{ breed[2] }}  </p>
+                                <section id="{{breed[1]}}">
+                                <!-- <a href="#{{breed[1]}}" onclick="expand({{breed[0]}})" id="bt{{breed[0]}}" class="btn btn-primary">Expand</a> -->
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m{{breed[0]}}">
+                                    Expand
+                                </button>
+                                    </section>
+                                </div>
                             </div>
-                    </div>
 
-                    
-                    <div class='row' style="margin-bottom: 6px;">
-                    
-                        <div class="col-md-8" id='modalpic'>
-                        <div class="modalimgdiv">
-                            <img class="img-fluid modalimg" src="{{ breed[5] }}" alt="Card image cap">
                         </div>
-                    </div>
-                        <div class="col-md-4" id='modaldesc'>
-                            
-                                <strong>Bred for:</strong> {{ breed[2] }} <br> 
-                                <strong>Breed Group:</strong> {{ breed[3] }} <br> 
-                                <strong>Temperament: </strong>{{ breed[4] }} </p>
                         
                         </div>
-                    </div>
-                    
+                        <div class='row'><div class="col-md-12"><br></div></div>
+                        <!-- <div class="col-md-1" style="width:20px;">
+                        </div> -->
+                            <!-- Modal -->
+                        <div class="modal fade" id="m{{breed[0]}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="container">
+                                <div class='row'>
+                                    <div class="col-md-12" id="modalhead">
+                                        <br>
+                                        <h4 class="modal-title" id="modal{{ breed[1] }}">{{ breed[1] }}</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                </div>
 
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                    </div>
-                </div>
-                </div>
-            </div>
+                                
+                                <div class='row' style="margin-bottom: 6px;">
+                                
+                                    <div class="col-md-8" id='modalpic'>
+                                    <div class="modalimgdiv">
+                                        <img class="img-fluid modalimg" src="{{ breed[5] }}" alt="Card image cap">
+                                    </div>
+                                </div>
+                                    <div class="col-md-4" id='modaldesc'>
+                                        
+                                            <strong>Bred for:</strong> {{ breed[2] }} <br> 
+                                            <strong>Breed Group:</strong> {{ breed[3] }} <br> 
+                                            <strong>Temperament: </strong>{{ breed[4] }} </p>
+                                    
+                                    </div>
+                                </div>
+                                
 
-            
-            
-             <div class="jumbotron" id='jt{{breed[0]}}' style="visibility: hidden; height: 0em;">
-                    <h1 class="display-4">{{ breed[1] }}</h1>
-                    <p class="lead">{{ breed[2] }} </p>
-                    <hr class="my-4">
-                     <img src="{{ breed[5] }}" width='700px'>
-                    <p class="lead">
-                        {{ breed[2] }} <br> {{ breed[3] }} <br> {{ breed[4] }} </p>
-                    <a class="btn btn-primary btn-lg" id="jbt{{breed[0]}}" href="#" role="button">Learn more</a>
-                    </p>
-                    </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        
+                        
+                        <div class="jumbotron" id='jt{{breed[0]}}' style="visibility: hidden; height: 0em;">
+                                <h1 class="display-4">{{ breed[1] }}</h1>
+                                <p class="lead">{{ breed[2] }} </p>
+                                <hr class="my-4">
+                                <img src="{{ breed[5] }}" width='700px'>
+                                <p class="lead">
+                                    {{ breed[2] }} <br> {{ breed[3] }} <br> {{ breed[4] }} </p>
+                                <a class="btn btn-primary btn-lg" id="jbt{{breed[0]}}" href="#" role="button">Learn more</a>
+                                </p>
+                                </div>
+                        </div>
+                    {% endfor %}
+                        </div>
+                {% endfor %}
             </div>
-          {% endfor %}
-            </div>
-      {% endfor %}
-    </div>
+        
+        </div>
+        <script>
+            window.onload=updatePagination();
+            function parseURL(url) {
+                var parser = document.createElement('a'),
+                    searchObject = {},
+                    queries, split, i;
+                // Let the browser do the work
+                parser.href = url;
+                // Convert query string to object
+                queries = parser.search.replace(/^\?/, '').split('&');
+                for( i = 0; i < queries.length; i++ ) {
+                    split = queries[i].split('=');
+                    searchObject[split[0]] = split[1];
+                }
+                return {
+                    protocol: parser.protocol,
+                    host: parser.host,
+                    hostname: parser.hostname,
+                    port: parser.port,
+                    pathname: parser.pathname,
+                    search: parser.search,
+                    searchObject: searchObject,
+                    hash: parser.hash
+                };
+            }
+            
+            function updatePagination(){
+                var currentPage = parseURL(window.location.href).pathname.replace("/","")
+                if (currentPage=='1'){
+                    $('#prev').addClass('disabled')
+                }
+                else{
+                    $('#prev').removeClass('disabled')
+                }
+            }
+            function loadnext(){
+                var currentPage = parseInt(parseURL(window.location.href).pathname.replace("/",""))
+                window.open('/'+(currentPage+1), "_self")
+            }
+        </script>
+
+        <div class="row">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                  <li id='prev' class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                  </li>
+                  {% for p in pages %}
+                    <li class="page-item"><a class="page-link" href="/{{ p }}">{{ p }}</a></li>
+                  {% endfor %}
+                  <li id='prev' class="page-item">
+                    <a class="page-link" onclick="loadnext()" href="#">Next</a>
+                  </li>
+                  </li>
+                </ul>
+              </nav>
+        </div>
+</div>
 
 <script>
     function expand(id){

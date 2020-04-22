@@ -127,16 +127,23 @@ def pullDogs():
     breeds = breedDf
     return breeds
 
-def breedPage(conn, page=0):
+def breedPage(page=0, columns=4):
     rows = 6
-    columns = 4
+    columns = columns
     total = rows*columns
     conn = create_connection()
     cur = conn.cursor()
     resp = cur.execute(q.DOGS)
+    try:
+        page = int(page)
+        if page>0:
+            page-=1
+    except Exception as e:
+        print(f"Bad page value {e}")
+        page=0
     #['id','name','bred_for','breed_group','temperament','img' ]
     bdf=[d for d in resp]
-    return  [bdf[0+(page*total):((page+1)*total)][i*columns:(i*columns)+columns] for i in range(0,rows)]
+    return  [bdf[0+(page*total):((page+1)*total)][i*columns:(i*columns)+columns] for i in range(0,rows)], len(bdf)
 
 @app.route('/images/<id>')
 def sendImage(id):
@@ -144,13 +151,16 @@ def sendImage(id):
 
 @app.route('/breeds/<page>')
 def breedsPage(page):
-    bl = breedPage(page)
-    return render_template('index.html', breeds=bl)
+    bl, total = breedPage(page)
+    pages = [p+1 for p in range(0,int(total/24))]
+    return render_template('index.html', breeds=bl, pages=pages, page=page)
 
-@app.route('/')
-def home():
-    bl = breedPage(0)
-    return render_template('index.html', breeds=bl)
+@app.route('/', defaults={'page':0})
+@app.route('/<page>')
+def home(page):
+    bl, total = breedPage(page)
+    pages = [p+1 for p in range(0,int(total/24))]
+    return render_template('index.html', breeds=bl, pages=pages, page=0)
 
 
 

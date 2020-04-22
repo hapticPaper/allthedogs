@@ -1,3 +1,8 @@
+#main_viewport {
+    display: block;
+    height:96%;
+}
+
 .card{
     height: 26em;
     width: 15em;
@@ -85,6 +90,8 @@ img{
     margin-left: auto;
     margin-right: auto;
     height: 200px;
+    text-align: center;
+
 }
 
 
