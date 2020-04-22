@@ -24,77 +24,83 @@ ll = logging
 SQLite
 """
 
-
-def create_connection(db_file=DBFILE):
-    """ create a database connection to a SQLite database """
-    conn = None
-    try:
-        conn = sqlite3.connect(db_file)
-        print(sqlite3.version)
-        return conn
-    except Error as e:
-        print(e)
-
-
-def create_table(conn: Connection, create_table_sql: str) -> None:
-    """ create a table from the create_table_sql statement
-    :param conn: Connection object
-    :param create_table_sql: a CREATE TABLE statement
-    :return:
-    """
-    try:
-        c = conn.cursor()
-        resp = c.executescript(create_table_sql)
-        return resp
-    except Error as e:
-        print(e)
-        raise
+class sqlDogs():
+    def __init__(self, db_file=DBFILE):
+        self.db_file=db_file
+        self.conn = self.create_connection()
 
 
 
-
-def write_dog(conn, dog):
-    """
-    Create a new project into the projects table
-    :param conn:
-    :param project:
-    :return: project id
-    """
-    
-    cur = conn.cursor()
-    #r = cur.execute()
-    try:
-        r = cur.execute(q.INSERT_DOG(dog))
-        return cur.lastrowid
-    except Exception as e:
-        ll.critical(f"Couldnt write the record - {e}          {dog}")
-
-
-def loadBreeds():
-    breeds = pd.read_csv('dogs.csv', sep="\t")
-    breeds = breeds.replace(np.nan, '', regex=True)
-    return breeds
-
-def writeDogs(conn, breeds):
-    for _,breed in breeds.iterrows():
-        #write_dog(breeds)
-        write_dog(conn, ",".join([f"""'{i.replace("'","")}'""" if type(i)==str else f"{i}" for i in breed.values]))
-    conn.commit()
-
-def reloadDogs():
-    conn = create_connection(os.path.join('cache', DBFILE))
-    try: 
-        resp = create_table(conn,q.CREATE_DOGS)
-        ll.info(f"Dog table is present - {resp}")
-        
-        
+    def create_connection(self):
+        """ create a database connection to a SQLite database """
+        self.conn = None
         try:
-            resp = writeDogs(conn, breeds)
-            print(resp)
+            self.conn = sqlite3.connect(self.db_file)
+            print(sqlite3.version)
+            return self.conn
+        except Error as e:
+            print(e)
+
+
+    def create_table(self, create_table_sql: str) -> None:
+        """ create a table from the create_table_sql statement
+        :param conn: Connection object
+        :param create_table_sql: a CREATE TABLE statement
+        :return:
+        """
+        try:
+            c = self.conn.cursor()
+            resp = c.executescript(create_table_sql)
+            return resp
+        except Error as e:
+            print(e)
+            raise
+
+
+
+
+    def write_dog(self, dog):
+        """
+        Create a new project into the projects table
+        :param conn:
+        :param project:
+        :return: project id
+        """
+        
+        cur = self.conn.cursor()
+        #r = cur.execute()
+        try:
+            r = cur.execute(q.INSERT_DOG(dog))
+            return cur.lastrowid
         except Exception as e:
-            ll.critical(f"Failed to write data - {e}")
-    except Exception as e:
-        print(f"No table created - {e}")
+            ll.critical(f"Couldnt write the record - {e}          {dog}")
+
+
+    def loadBreeds(self):
+        breeds = pd.read_csv('dogs.csv', sep="\t")
+        breeds = breeds.replace(np.nan, '', regex=True)
+        return breeds
+
+    def writeDogs(self, breeds):
+        for _,breed in breeds.iterrows():
+            #write_dog(breeds)
+            self.write_dog(",".join([f"""'{i.replace("'","")}'""" if type(i)==str else f"{i}" for i in breed.values]))
+        self.conn.commit()
+
+    def reloadDogs(self, breeds):
+        d = sqlDogs()
+        try: 
+            resp = d.create_table(q.CREATE_DOGS)
+            ll.info(f"Dog table is present - {resp}")
+            
+            
+            try:
+                resp = self.writeDogs(breeds)
+                print(resp)
+            except Exception as e:
+                ll.critical(f"Failed to write data - {e}")
+        except Exception as e:
+            print(f"No table created - {e}")
 
 
 def saveImage(content, file):
@@ -106,7 +112,7 @@ def pullImages(breeds):
     imgs=[]
     for idx, breed in breeds.iterrows():
         try:
-            resp = SESS.get(f"https://api.thedogapi.com/v1/images/search?breed_id={idx+1}").json()
+            resp = SESS.get(f"https://api.thedogapi.com/v1/images/search?breed_id={breed.id}").json()
             imgs.append(resp[0]['url'])
             #saveImage(SESS.get(resp[0]['url']).content, os.path.join('images',f'{idx+1}.jpg'))
             
@@ -131,7 +137,8 @@ def breedPage(page=0, columns=4):
     rows = 6
     columns = columns
     total = rows*columns
-    conn = create_connection()
+    d = sqlDogs()
+    conn = d.conn
     cur = conn.cursor()
     resp = cur.execute(q.DOGS)
     try:
@@ -165,9 +172,11 @@ def home(page):
 
 
 if __name__ == '__main__':
-    breeds = loadBreeds()
+    d = sqlDogs()
+    breeds = d.loadBreeds()
     #breeds = pullDogs()
-    #pullImages(breeds)
+    #breeds = pullImages(breeds)
+    d.reloadDogs(breeds)
     app.run(debug=True)
 
 
