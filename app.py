@@ -128,12 +128,15 @@ def pullDogs():
     return breeds
 
 def breedPage(conn, page=0):
+    rows = 6
+    columns = 4
+    total = rows*columns
     conn = create_connection()
     cur = conn.cursor()
     resp = cur.execute(q.DOGS)
     #['id','name','bred_for','breed_group','temperament','img' ]
     bdf=[d for d in resp]
-    return  [bdf[0+(page*25):((page+1)*25)][i:i*5] for i in range(5)]
+    return  [bdf[0+(page*total):((page+1)*total)][i*columns:(i*columns)+columns] for i in range(0,rows)]
 
 @app.route('/images/<id>')
 def sendImage(id):
