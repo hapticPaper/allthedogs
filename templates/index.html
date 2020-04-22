@@ -6,12 +6,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 
+
         <!-- Optional meta tags -->
         <meta property='og:title' content='Dog Breeds'/>
         <meta property='og:image' content='//https://www.gannett-cdn.com/presto/2020/03/24/USAT/866ee04e-9c56-4f84-ada3-e0c0ea0c0fb3-XXX_FUN_SMARTPET_041814.JPG'/>
         <meta property='og:description' content='Lots of dog breeds.'/>
         <meta property='og:url' content='https://justdogs.herokuapp.com' />
-
+        <title>🐶Just Dogs 🐶</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -20,7 +21,68 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
       
         <link rel="stylesheet" href="static/style.css">
-      
+        <script>
+            window.onload=updatePagination();
+            window.onload=updateForDevice();
+
+
+            function updateForDevice(){
+              if (window.matchMedia("(max-width: 700px)").matches){
+                $('.coldef').removeClass('col-3')
+                $('.coldef').addClass('col-6')
+              }
+              else{
+                $('.coldef').removeClass('col-6')
+                $('.coldef').addClass('col-3')
+              }
+            }
+
+
+
+            function parseURL(url) {
+                var parser = document.createElement('a'),
+                    searchObject = {},
+                    queries, split, i;
+                // Let the browser do the work
+                parser.href = url;
+                // Convert query string to object
+                queries = parser.search.replace(/^\?/, '').split('&');
+                for( i = 0; i < queries.length; i++ ) {
+                    split = queries[i].split('=');
+                    searchObject[split[0]] = split[1];
+                }
+                return {
+                    protocol: parser.protocol,
+                    host: parser.host,
+                    hostname: parser.hostname,
+                    port: parser.port,
+                    pathname: parser.pathname,
+                    search: parser.search,
+                    searchObject: searchObject,
+                    hash: parser.hash
+                };
+            }
+            
+            function updatePagination(){
+                var currentPage = parseURL(window.location.href).pathname.replace("/","")
+                if (currentPage=='1'){
+                    $('#prev').addClass('disabled')
+                }
+                else{
+                    $('#prev').removeClass('disabled')
+                }
+            }
+            function loadnext(){
+                var currentPage = parseInt(parseURL(window.location.href).pathname.replace("/",""))
+                if (Number.isNaN(currentPage)){
+                    currentPage=1
+                }
+                
+                window.open('/'+(currentPage+1), "_self")
+            }
+        </script>
+
+
     </head>
     <body>
         <div class="container">
@@ -116,66 +178,7 @@
             </div>
         
         </div>
-        <script>
-            window.onload=updatePagination();
-            window.onload=updateForDevice();
-
-
-            function updateForDevice(){
-              if (window.matchMedia("(max-width: 700px)").matches){
-                $('.coldef').removeClass('col-3')
-                $('.coldef').addClass('col-6')
-              }
-              else{
-                $('.coldef').removeClass('col-6')
-                $('.coldef').addClass('col-3')
-              }
-            }
-
-
-
-            function parseURL(url) {
-                var parser = document.createElement('a'),
-                    searchObject = {},
-                    queries, split, i;
-                // Let the browser do the work
-                parser.href = url;
-                // Convert query string to object
-                queries = parser.search.replace(/^\?/, '').split('&');
-                for( i = 0; i < queries.length; i++ ) {
-                    split = queries[i].split('=');
-                    searchObject[split[0]] = split[1];
-                }
-                return {
-                    protocol: parser.protocol,
-                    host: parser.host,
-                    hostname: parser.hostname,
-                    port: parser.port,
-                    pathname: parser.pathname,
-                    search: parser.search,
-                    searchObject: searchObject,
-                    hash: parser.hash
-                };
-            }
-            
-            function updatePagination(){
-                var currentPage = parseURL(window.location.href).pathname.replace("/","")
-                if (currentPage=='1'){
-                    $('#prev').addClass('disabled')
-                }
-                else{
-                    $('#prev').removeClass('disabled')
-                }
-            }
-            function loadnext(){
-                var currentPage = parseInt(parseURL(window.location.href).pathname.replace("/",""))
-                if (Number.isNaN(currentPage)){
-                    currentPage=1
-                }
-                
-                window.open('/'+(currentPage+1), "_self")
-            }
-        </script>
+        
 
         <div class="row">
             <nav aria-label="Page navigation example">
