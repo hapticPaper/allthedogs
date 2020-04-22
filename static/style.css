@@ -3,6 +3,10 @@
     height:96%;
 }
 
+.col-6 {
+    text-align:  -webkit-center;
+}
+
 .card{
     height: 26em;
     width: 15em;
