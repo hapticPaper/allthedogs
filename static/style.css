@@ -1,5 +1,5 @@
 .card{
-    height: 24em;
+    height: 26em;
     width: 15em;
     border-radius: calc(0.5rem - 1px);
     margin-bottom: 4px;
@@ -12,6 +12,7 @@
     position: absolute;
     bottom: 0.25em;
     margin-top: 4px;
+    padding: 0.75em
 }
 
 .frame {
@@ -36,14 +37,14 @@
     vertical-align: middle;
     margin-left: auto;
     margin-right: auto;
-    width: 192px;
-    height: 200px;
+    width: 200px;
+    height: 220px;
 }
 
 .picureframe{
     vertical-align: middle;
-    width: 190px;
-    height: 192px;
+    width: 220px;
+    height: 200px;
 }
 
 img{
@@ -100,12 +101,27 @@ img{
     border-radius: calc(1rem - 1px);
 
 }
+.card-img-top {
+    max-height: 192px;
+    max-width: 200px;
+    width: auto;
+    height: auto;
+}
 
 
 .picureframe{
     vertical-align: middle;
-    width: 190px;
-    height: 192px;
+    width: 220px;
+    height: 200px;
+}
+
+.img-fluid {
+    max-width: 100%;
+    max-height: inherit;
+    height: auto;
+}
+
+
 
 
 /* Portrait and Landscape */
