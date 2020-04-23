@@ -10,7 +10,7 @@ function autocomplete(inp, arr) {
       if (!val) { return false;}
       currentFocus = -1;
       /*create a DIV element that will contain the items (values):*/
-      a = document.createElement("DIV");
+      a = document.createElement("span");
       a.setAttribute("id", this.id + "autocomplete-list");
       a.setAttribute("class", "autocomplete-items");
       /*append the DIV element as a child of the autocomplete container:*/

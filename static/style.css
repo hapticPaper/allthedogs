@@ -140,9 +140,16 @@ img{
 
 .searchbox{
     margin: auto;
+
 }
 
+.autocomplete-items{
+    z-index: 999;
+}
 
+#main_viewport{
+    z-index: 99;
+}
 /* Portrait and Landscape */
 @media (max-width: 600px)  { 
     .col-sm-6{
