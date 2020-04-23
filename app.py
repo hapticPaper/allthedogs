@@ -151,9 +151,17 @@ def breedPage(page=0, columns=4):
         page=0
     #['id','name','bred_for','breed_group','temperament','img' ]
     bdf=[d for d in resp]
-    return  [bdf[0+(page*total):((page+1)*total)][i*columns:(i*columns)+columns] for i in range(0,rows)], \
+    pages = [bdf[0+(page*total):((page+1)*total)][i*columns:(i*columns)+columns] for i in range(0,rows)]
+    updated_pages = []
+    for _, record in enumerate(bdf):
+        p, m = divmod(_, total)
+        rec=[record[1],p+1]
+        updated_pages.append(rec)
+
+    return  pages, \
             len(bdf), \
-            [f"{i[1]}" for i in bdf]
+            [f"{i[1]}" for i in bdf], \
+            [(f"{i[0]}",f"{i[1]}") for i in updated_pages]
 
 
 @app.route('/images/<id>')
@@ -162,9 +170,9 @@ def sendImage(id):
 
 @app.route('/breeds/<page>')
 def breedsPage(page):
-    bl, total, allnames = breedPage(page)
-    pages = [p+1 for p in range(0,int(total/24))]
-    return render_template('index.html', breeds=bl, pages=pages, page=page, allnames=allnames)
+    bl, total, allnames, pagedict = breedPage(page)
+    pages = [p for p in range(1,int(total/24)+2)]
+    return render_template('index.html', breeds=bl, pages=pages, page=page, allnames=allnames, pagedict=pagedict)
 
 # @app.route('/index/<page>')
 # def index(page):
@@ -177,12 +185,12 @@ def breedsPage(page):
 #     return render_template('index.html', breeds=bl, pages=pages, page=0, allnames=allnames, breedname=breed)
 
 
-@app.route('/', defaults={'page':0})
+@app.route('/', defaults={'page':1})
 @app.route('/<page>')
 def home(page):
-    bl, total, allnames = breedPage(page)
-    pages = [p+1 for p in range(0,int(total/24))]
-    return render_template('index.html', breeds=bl, pages=pages, page=0, allnames=allnames)
+    bl, total, allnames, pagedict = breedPage(page)
+    pages = [p for p in range(1,int(total/24)+2)]
+    return render_template('index.html', breeds=bl, pages=pages, page=0, allnames=allnames, pagedict=pagedict)
 
 @app.route('/favicon.ico')
 def favicon():

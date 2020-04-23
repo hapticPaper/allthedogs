@@ -44,12 +44,18 @@
                     });
                     return vars;
                 }
-
-
+            
+            
+            
             function gotoDog(dog){
-                dog = dog.val()
-                var currentPage = parseURL(window.location.href).pathname.replace("/","")
-                window.open("/"+currentPage+"#"+dog, "_self")
+                var dog_pages = {
+                    {% for d in pagedict %}
+                        "{{ d[0] }}" : {{ d[1] }},
+                    {% endfor %}
+                }
+                dog = dog.val();
+                var currentPage = parseURL(window.location.href).pathname.replace("/","");
+                window.open("/"+dog_pages[dog]+"#"+dog, "_self");
                 }
 
             function parseURL(url) {
