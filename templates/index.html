@@ -29,12 +29,12 @@
 
             function updateForDevice(){
               if (window.matchMedia("(max-width: 700px)").matches){
-                $('.coldef').removeClass('col-3')
-                $('.coldef').addClass('col-6')
+                $('.coldef').removeClass('col-lg-3')
+                $('.coldef').addClass('col-sm-6')
               }
               else{
-                $('.coldef').removeClass('col-6')
-                $('.coldef').addClass('col-3')
+                $('.coldef').removeClass('col-sm-6')
+                $('.coldef').addClass('col-lg-3')
               }
             }
             function getUrlVars() {
@@ -238,7 +238,8 @@
                     {% for set in breeds %}
                         <div class="row">
                         {% for breed in set %}
-                        <div class="col-3 coldef">
+                        <div class="col-sm-6">
+                        <div class="col-lg-3 coldef">
                             <div id="dogcard" class="align-self-center">
 
                             <section id="{{breed[1]}}">
@@ -262,6 +263,7 @@
                 </div>
                         
             </div>
+        </div>
                         <div class='row'><div class="col-md-12"><br></div></div>
                         <!-- <div class="col-md-1" style="width:20px;">
                         </div> -->
