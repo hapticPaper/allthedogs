@@ -58,7 +58,8 @@
                     {% for set in breeds %}
                         <div class="row">
                         {% for breed in set %}
-                        <div class="col-sm-6 col-lg-3 coldef">
+                        <div class="col-sm-6">
+                        <div class="col-lg-3 coldef">
                             <div id="dogcard" class="align-self-center">
 
                             <section id="{{breed[1]}}">
@@ -79,6 +80,7 @@
                     </div>
 
                 </section>
+                </div>
                         
             </div>
         </div>
@@ -127,7 +129,20 @@
                             </div>
                             </div>
                         </div>
-                    </div>
+
+                        
+                        
+                        <div class="jumbotron" id='jt{{breed[0]}}' style="visibility: hidden; height: 0em;">
+                                <h1 class="display-4">{{ breed[1] }}</h1>
+                                <p class="lead">{{ breed[2] }} </p>
+                                <hr class="my-4">
+                                <img src="{{ breed[5] }}" width='700px'>
+                                <p class="lead">
+                                    {{ breed[2] }} <br> {{ breed[3] }} <br> {{ breed[4] }} </p>
+                                <a class="btn btn-primary btn-lg" id="jbt{{breed[0]}}" href="#" role="button">Learn more</a>
+                                </p>
+                                </div>
+                        </div>
                     {% endfor %}
                         </div>
                 {% endfor %}
