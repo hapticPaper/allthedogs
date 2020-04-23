@@ -8,7 +8,7 @@
     margin-bottom: 3px;
 }
 
-.col-6 {
+.col-sm-6 {
     text-align:  -webkit-center;
 }
 
@@ -145,7 +145,7 @@ img{
 
     .card{
         height: 16em;
-        width: 14em;
+        width: 46vw;
         border-radius: calc(0.5rem - 1px);
         margin-bottom: 2px;
         margin-top: 2px;
@@ -174,7 +174,12 @@ img{
         height: 160px;
         text-align: center;
     }
-    
+    .col-sm-6{
+        width: 46vw;
+        margin-left: 1px;
+        margin-right: 1px;
+
+    }
     .picureframe{
         vertical-align: middle;
         width: 128px;
@@ -187,7 +192,7 @@ img{
         height: auto;
     }
     .btn {
-        padding: 0px;
+        padding: 1px;
     }
     
 
