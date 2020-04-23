@@ -2,6 +2,7 @@ import requests, os
 import pandas as pd
 import numpy as np
 from flask import Flask, render_template, send_from_directory
+from flask_restful import reqparse
 import logging
 import sqlite3
 from sqlite3 import Connection
@@ -150,7 +151,10 @@ def breedPage(page=0, columns=4):
         page=0
     #['id','name','bred_for','breed_group','temperament','img' ]
     bdf=[d for d in resp]
-    return  [bdf[0+(page*total):((page+1)*total)][i*columns:(i*columns)+columns] for i in range(0,rows)], len(bdf)
+    return  [bdf[0+(page*total):((page+1)*total)][i*columns:(i*columns)+columns] for i in range(0,rows)], \
+            len(bdf), \
+            [f"{i[1]}" for i in bdf]
+
 
 @app.route('/images/<id>')
 def sendImage(id):
@@ -158,16 +162,36 @@ def sendImage(id):
 
 @app.route('/breeds/<page>')
 def breedsPage(page):
-    bl, total = breedPage(page)
+    bl, total, allnames = breedPage(page)
     pages = [p+1 for p in range(0,int(total/24))]
-    return render_template('index.html', breeds=bl, pages=pages, page=page)
+    return render_template('index.html', breeds=bl, pages=pages, page=page, allnames=allnames)
+
+# @app.route('/index/<page>')
+# def index(page):
+#     parser = reqparse.RequestParser()
+#     parser.add_argument('breed', type=str, help='Something went wrong - no breed provided')
+#     args = parser.parse_args()
+#     breed = args['breed']
+#     bl, total, allnames = breedPage(page)
+#     pages = [p+1 for p in range(0,int(total/24))]
+#     return render_template('index.html', breeds=bl, pages=pages, page=0, allnames=allnames, breedname=breed)
+
 
 @app.route('/', defaults={'page':0})
 @app.route('/<page>')
 def home(page):
-    bl, total = breedPage(page)
+    bl, total, allnames = breedPage(page)
     pages = [p+1 for p in range(0,int(total/24))]
-    return render_template('index.html', breeds=bl, pages=pages, page=0)
+    return render_template('index.html', breeds=bl, pages=pages, page=0, allnames=allnames)
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory('static', 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+@app.route('/apple-touch-icon.png')
+def appletouch():
+    return send_from_directory('static', 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 
 
 

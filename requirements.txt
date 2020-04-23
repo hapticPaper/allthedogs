@@ -1,4 +1,5 @@
 requests
-flask_cors
+flask-cors
 pandas==1.0.3
 gunicorn
+flask-restful
