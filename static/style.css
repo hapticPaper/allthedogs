@@ -84,6 +84,7 @@ img{
     margin-bottom: 6px;
 }
 
+
 .modalimgdiv {
     vertical-align: middle;
     justify-content: center;
@@ -143,11 +144,8 @@ img{
 
 }
 
-.form-inline{
-    z-index: 999;
-}
+
 .autocomplete-items{
-    z-index: 998;
     position: absolute;
     top: 44px;
     margin-left: 10px;
@@ -162,7 +160,6 @@ img{
 
 
 #main_viewport{
-    z-index: 99;
     top:20;
     left:0;
 }
