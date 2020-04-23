@@ -146,6 +146,7 @@ img{
 
 
 .autocomplete-items{
+    z-index:100;
     position: absolute;
     top: 44px;
     margin-left: 10px;
