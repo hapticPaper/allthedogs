@@ -121,17 +121,6 @@ function getUrlVars() {
 
 
 
-function gotoDog(dog){
-    var dog_pages = {
-        {% for d in pagedict %}
-            "{{ d[0] }}" : {{ d[1] }},
-        {% endfor %}
-    }
-    dog = dog.val();
-    var currentPage = parseURL(window.location.href).pathname.replace("/","");
-    window.open("/"+dog_pages[dog]+"#"+dog, "_self");
-    }
-
 function parseURL(url) {
     var parser = document.createElement('a'),
         searchObject = {},

@@ -138,17 +138,26 @@ img{
 }
 
 
+.searchbox{
+    margin: auto;
+}
 
 
 /* Portrait and Landscape */
 @media (max-width: 600px)  { 
+    .col-sm-6{
+        width: 48vw;
+        text-align: center;
+    }
 
     .card{
         height: 16em;
-        width: 14em;
+        width: 9em;
         border-radius: calc(0.5rem - 1px);
         margin-bottom: 2px;
         margin-top: 2px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .card-text{
