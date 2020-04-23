@@ -10,7 +10,7 @@ function autocomplete(inp, arr) {
       if (!val) { return false;}
       currentFocus = -1;
       /*create a DIV element that will contain the items (values):*/
-      a = document.createElement("span");
+      a = document.createElement("DIV");
       a.setAttribute("id", this.id + "autocomplete-list");
       a.setAttribute("class", "autocomplete-items");
       /*append the DIV element as a child of the autocomplete container:*/
@@ -24,6 +24,7 @@ function autocomplete(inp, arr) {
          //(arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
           /*create a DIV element for each matching element:*/
           b = document.createElement("DIV");
+          b.setAttribute("class", "result-item")
           /*make the matching letters bold:*/
             start_pos = arr[i].toLowerCase().indexOf(val.toLowerCase());
           b.innerHTML = arr[i].substr(0, start_pos)+"<strong>"

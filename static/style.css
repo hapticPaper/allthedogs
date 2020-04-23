@@ -143,12 +143,28 @@ img{
 
 }
 
-.autocomplete-items{
+.form-inline{
     z-index: 999;
 }
+.autocomplete-items{
+    z-index: 998;
+    position: absolute;
+    top: 44px;
+    margin-left: 10px;
+    background-color:rgb(239, 244, 244);
+    border-radius: calc(1rem - 1px);
+
+}
+
+.result-item{
+    margin-left: 12px;
+}
+
 
 #main_viewport{
     z-index: 99;
+    top:20;
+    left:0;
 }
 /* Portrait and Landscape */
 @media (max-width: 600px)  { 
