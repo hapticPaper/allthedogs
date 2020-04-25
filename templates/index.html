@@ -87,7 +87,7 @@
                         <div class="col-sm-6 col-lg-3 coldef">
                             <div id="dogcard" class="align-self-center">
 
-                            <section id="{{breed[1]}}">
+                            <section id="{{breed[1]}}"><script>$('#btn{{breed[0]}}').click()</script></section>
                                 <div class="card">
                                 <div class="imgdiv">
                                         <img class="card-img-top" src="{{ breed[5] }}" alt="Card image cap">
@@ -98,13 +98,11 @@
                                     <p class="card-text"> {{ breed[2] }}  </p>
                                     <!-- <a href="#{{breed[1]}}" onclick="expand({{breed[0]}})" id="bt{{breed[0]}}" class="btn btn-primary">Expand</a> -->
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m{{breed[0]}}">
+                                    <button type="button" id="btn{{breed[0]}}" class="btn btn-primary" data-toggle="modal" data-target="#m{{breed[0]}}">
                                         Expand
                                     </button>
                         </div>
                     </div>
-
-                </section>
                 </div>
                  
         </div>
