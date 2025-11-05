@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "date": "2025-11-05",
+      "version": "2025.11",
+      "title": "2025 refresh",
+      "notes": [
+        "Added a dedicated ‘What’s new’ page and link in the navbar.",
+        "Kept all existing dog data and pages intact — this entry is additive only."
+      ]
+    }
+  ]
+}
