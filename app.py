@@ -1,4 +1,5 @@
 import requests, os
+import json
 import pandas as pd
 import numpy as np
 from flask import Flask, render_template, send_from_directory
@@ -16,6 +17,8 @@ app=Flask(__name__)
 SESS = requests.session()
 app.secret_key='shutupthisisasecretkeydonttellanyonewhatitis'
 DBFILE = os.path.join('cache','dogs.sqlite')
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+UPDATES_FILE = os.path.join(APP_DIR, 'data', 'updates.json')
 
 
 
@@ -164,6 +167,23 @@ def breedPage(page=0, columns=4):
             [(f"{i[0]}",f"{i[1]}") for i in updated_pages]
 
 
+def load_updates():
+    """Load update entries from JSON file. Returns a list of entries sorted by date desc."""
+    try:
+        with open(UPDATES_FILE, 'r') as f:
+            data = json.load(f)
+            entries = data.get('entries', [])
+            # Best-effort sort by date string YYYY-MM-DD descending
+            try:
+                entries.sort(key=lambda e: e.get('date', ''), reverse=True)
+            except Exception:
+                pass
+            return entries
+    except Exception as e:
+        ll.warning(f"No updates file found or failed to parse: {e}")
+        return []
+
+
 @app.route('/images/<id>')
 def sendImage(id):
     return send_from_directory('images', f"{id}.jpg")
@@ -199,6 +219,11 @@ def favicon():
 @app.route('/apple-touch-icon.png')
 def appletouch():
     return send_from_directory('static', 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+@app.route('/updates')
+def updates():
+    entries = load_updates()
+    return render_template('updates.html', entries=entries)
 
 
 
